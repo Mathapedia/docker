@@ -9,6 +9,7 @@ node_modules
 *.tmp
 *.bak
 *.dvi
+*.ps
 *.xdv
 
 # LaTeX build files

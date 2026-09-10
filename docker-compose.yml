@@ -2,5 +2,5 @@ version: '2'
 services:
     latex:
         build: ./latex
-        container_name: pstricks-latex
-        image: pyramation/pstricks-latex
+        container_name: mathapedia-latex
+        image: ghcr.io/mathapedia/latex

@@ -38,6 +38,24 @@ RUN apt-get install -y ghostscript
 # Install libalgorithm-diff-perl (addon, for latexdiff support)
 RUN apt-get install -y libalgorithm-diff-perl
 
+# Build/lint tooling: latexmk (incremental builds), chktex + latexindent
+# (lint/format), biber, IEEEtran and other .bst styles, dvisvgm for SVG
+RUN apt-get install -y --no-install-recommends \
+    latexmk \
+    chktex \
+    biber \
+    texlive-extra-utils \
+    texlive-bibtex-extra \
+    texlive-publishers \
+    texlive-science \
+    libyaml-tiny-perl \
+    libfile-homedir-perl \
+    libunicode-linebreak-perl \
+    liblog-log4perl-perl \
+    make \
+    git \
+    python3
+
 # Install Node.js
 RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && \
     apt-get install -y nodejs
