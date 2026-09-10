@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE: ghcr.io/${{ github.repository_owner }}/latex
+  IMAGE: ghcr.io/mathapedia/latex
 
 jobs:
   image:
