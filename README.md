@@ -1,7 +1,8 @@
 # Mathapedia LaTeX + PSTricks Docker Image
 
 ```
-docker pull ghcr.io/mathapedia/latex:latest
+docker pull mathapedia/latex:latest            # Docker Hub
+docker pull ghcr.io/mathapedia/latex:latest    # GHCR (same image)
 ```
 
 A batteries-included TeX Live image for papers that use **PSTricks** (which
@@ -9,8 +10,8 @@ needs the `latex -> dvips -> ps2pdf` route) as well as TikZ/pgfplots, BibTeX/
 Biber, IEEEtran, and the tooling the
 [Mathapedia boilerplates](https://github.com/Mathapedia/boilerplates) rely on.
 
-Previously published as `pyramation/pstricks-latex` on Docker Hub; that name
-still works but new tags land on GHCR.
+Previously published as `pyramation/pstricks-latex`; that name still works
+but new tags land on `mathapedia/latex` (Docker Hub and GHCR).
 
 ## What's inside
 
@@ -63,9 +64,11 @@ Override the image used by the run targets with `RUN_IMAGE=...`.
 
 `.github/workflows/build-docker.yml` builds the image on every push and PR,
 runs `make check` and compiles the test document, then (not on PRs) pushes
-multi-arch images to GHCR:
+multi-arch (amd64 + arm64) images to Docker Hub (`mathapedia/latex`, via the
+`DOCKER_USERNAME`/`DOCKER_TOKEN` org secrets) and GHCR
+(`ghcr.io/mathapedia/latex`):
 
-- `main` -> `ghcr.io/mathapedia/latex:latest` and `:sha-<short>`
+- `main` -> `:latest` and `:sha-<short>`
 - tag `vX.Y.Z` -> `:X.Y.Z` and `:X.Y`
 
 ## PSTricks notes
