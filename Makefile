@@ -1,5 +1,5 @@
 # Image name and version tag
-IMAGE_NAME := ghcr.io/mathapedia/latex
+IMAGE_NAME := mathapedia/latex
 TAG        := $(shell git describe --tags --always 2>/dev/null || echo dev)
 PLATFORMS  := linux/amd64,linux/arm64
 

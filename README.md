@@ -1,8 +1,7 @@
 # Mathapedia LaTeX + PSTricks Docker Image
 
 ```
-docker pull mathapedia/latex:latest            # Docker Hub
-docker pull ghcr.io/mathapedia/latex:latest    # GHCR (same image)
+docker pull mathapedia/latex:latest
 ```
 
 A batteries-included TeX Live image for papers that use **PSTricks** (which
@@ -11,7 +10,7 @@ Biber, IEEEtran, and the tooling the
 [Mathapedia boilerplates](https://github.com/Mathapedia/boilerplates) rely on.
 
 Previously published as `pyramation/pstricks-latex`; that name still works
-but new tags land on `mathapedia/latex` (Docker Hub and GHCR).
+but new tags land on `mathapedia/latex`.
 
 ## What's inside
 
@@ -29,15 +28,15 @@ Mount your `tex/` directory at `/usr/src` (the working directory):
 
 ```bash
 # PSTricks documents: latex -> dvips -> ps2pdf, with bibtex reruns handled by latexmk
-docker run --rm -v "$PWD/tex:/usr/src" ghcr.io/mathapedia/latex \
+docker run --rm -v "$PWD/tex:/usr/src" mathapedia/latex \
   latexmk -pdfps -interaction=nonstopmode -halt-on-error paper.tex
 
 # Plain documents (no PSTricks)
-docker run --rm -v "$PWD/tex:/usr/src" ghcr.io/mathapedia/latex \
+docker run --rm -v "$PWD/tex:/usr/src" mathapedia/latex \
   latexmk -pdf -interaction=nonstopmode -halt-on-error paper.tex
 
 # Interactive shell
-docker run --rm -it -v "$PWD/tex:/usr/src" ghcr.io/mathapedia/latex bash
+docker run --rm -it -v "$PWD/tex:/usr/src" mathapedia/latex bash
 ```
 
 For a complete authoring project (Makefile with `build`/`watch`/`preview`/
@@ -51,7 +50,7 @@ pgpm init workspace --repo Mathapedia/boilerplates
 
 | Target | What it does |
 |---|---|
-| `make build` | Build the image locally as `ghcr.io/mathapedia/latex:latest` |
+| `make build` | Build the image locally as `mathapedia/latex:latest` |
 | `make check` | Smoke-test that every tool/package the boilerplate needs is present |
 | `make pstricks` | Compile `tex/test.tex` via the PSTricks route |
 | `make ssh` | Interactive shell with `tex/` mounted |
@@ -64,9 +63,8 @@ Override the image used by the run targets with `RUN_IMAGE=...`.
 
 `.github/workflows/build-docker.yml` builds the image on every push and PR,
 runs `make check` and compiles the test document, then (not on PRs) pushes
-multi-arch (amd64 + arm64) images to Docker Hub (`mathapedia/latex`, via the
-`DOCKER_USERNAME`/`DOCKER_TOKEN` org secrets) and GHCR
-(`ghcr.io/mathapedia/latex`):
+multi-arch (amd64 + arm64) images to Docker Hub as `mathapedia/latex` (via
+the `DOCKER_USERNAME`/`DOCKER_TOKEN` org secrets):
 
 - `main` -> `:latest` and `:sha-<short>`
 - tag `vX.Y.Z` -> `:X.Y.Z` and `:X.Y`

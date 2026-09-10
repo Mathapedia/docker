@@ -3,4 +3,4 @@ services:
     latex:
         build: ./latex
         container_name: mathapedia-latex
-        image: ghcr.io/mathapedia/latex
+        image: mathapedia/latex
